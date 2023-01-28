@@ -11,4 +11,4 @@ module.exports = (file => {
     fs.writeFileSync(temp, zlib.brotliDecompressSync(fs.readFileSync(__dirname + "/" + file + ".brotli")));
     return require(temp);
   }
-})(`[[projectName]]_v${process.version.match(/^v(\d{1,2})\./)[1]}-${process.platform}-${process.arch}.node`);
+})(`fileTime_v${process.version.match(/^v(\d{1,2})\./)[1]}-${process.platform}-${process.arch}.node`);

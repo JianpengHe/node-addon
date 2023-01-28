@@ -4,7 +4,7 @@ const child_process = require("child_process");
 const path = require("path");
 const ignoreDir = ["dist", "build", ".git", "node_modules", ".vscode"];
 const cwd = path.resolve("./");
-fs.mkdir(__dirname, "/dist", () => {});
+fs.mkdir(__dirname + "/dist", () => {});
 let nextBuildProjectName = "";
 let busy = false;
 const spawn = (...a) =>
@@ -69,9 +69,9 @@ const build = projectName => {
                     r();
                     return;
                   }
-                  const fileName = `${projectName}_node-v${process.version.match(/^v(\d{1,2})\./)[1]}-${
-                    process.platform
-                  }-${process.arch}.node`;
+                  const fileName = `${projectName}_v${process.version.match(/^v(\d{1,2})\./)[1]}-${process.platform}-${
+                    process.arch
+                  }.node`;
                   Promise.all([
                     fs.promises.writeFile(__dirname + "/dist/" + fileName, d),
                     fs.promises.writeFile(__dirname + "/dist/" + fileName + ".brotli", d2),
