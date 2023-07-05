@@ -1,5 +1,5 @@
 //cls&rd /s /q build&node-gyp configure --arch=ia32&&node-gyp build&&node test
-const { LyricDecode } = require(`../dist/QQMusicLyricDecode.js`);
+const { LyricDecode } = require(process.argv[2]);
 const zlib = require("zlib");
 const fs = require("fs");
 
