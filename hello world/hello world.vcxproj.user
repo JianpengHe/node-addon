@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LocalDebuggerCommand>$(SolutionDir)../.node/Release/node.exe</LocalDebuggerCommand>
-    <LocalDebuggerCommandArguments>index.js "$(TargetPath)"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>../dist.js "$(TargetPath)"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
