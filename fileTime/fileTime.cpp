@@ -1,4 +1,4 @@
-#include <Windows.h>
+﻿#include <Windows.h>
 #include <node.h>
 
 #define EPOCH_DIFF 116444736000000000 // FILETIME starts from 1601-01-01 UTC, epoch from 1970- 01-01
@@ -22,7 +22,7 @@ void UnixTimeToFileTime(__time64_t tmUnixTime, LPFILETIME pFileTime)
     pFileTime->dwHighDateTime = ll >> 32;
 }
 
-const char *argToChar(Local<Value> arg, Isolate *isolate, Local<Context> context)
+const char* argToChar(Local<Value> arg, Isolate* isolate, Local<Context> context)
 {
     String::Utf8Value str(isolate, arg->ToString(context).ToLocalChecked());
     return *str ? *str : "<string conversion failed>";
@@ -31,20 +31,20 @@ unsigned int argToUint(Local<Value> arg, Local<Context> context)
 {
     return arg->Uint32Value(context).FromJust();
 }
-void returnUint32(unsigned int value, Isolate *isolate, const FunctionCallbackInfo<Value> &args)
+void returnUint32(unsigned int value, Isolate* isolate, const FunctionCallbackInfo<Value>& args)
 {
     args.GetReturnValue().Set(v8::Uint32::New(isolate, 0));
 }
-void throwError(Isolate *isolate, char *msg)
+void throwError(Isolate* isolate, char* msg)
 {
     isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, msg).ToLocalChecked()));
 }
 
 namespace std
 {
-    void fileTime(const FunctionCallbackInfo<Value> &args)
+    void fileTime(const FunctionCallbackInfo<Value>& args)
     {
-        Isolate *isolate = args.GetIsolate();
+        Isolate* isolate = args.GetIsolate();
         Local<Context> context = isolate->GetCurrentContext();
         if (args.Length() < 2)
         {
@@ -56,7 +56,7 @@ namespace std
             throwError(isolate, "File name must be a string.");
             return;
         }
-        const char *fileName = argToChar(args[0], isolate, context);
+        const char* fileName = argToChar(args[0], isolate, context);
         unsigned int ctime = args[1]->Uint32Value(isolate->GetCurrentContext()).FromJust();
         unsigned int mtime = args.Length() > 2 ? argToUint(args[2], context) : ctime;
         unsigned int atime = args.Length() > 3 ? argToUint(args[3], context) : mtime;

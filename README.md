@@ -37,7 +37,7 @@ console.log(addon.hello());
 - 配置属性 → 常规 → 配置类型：`动态库(.dll)`
 - 配置属性 → 高级 → 目标文件扩展名：`.node`
 - 配置属性 → 调试 → 命令：`$(SolutionDir)../.node/Release/node.exe`
-- 配置属性 → 调试 → 命令参数：`index.js "$(TargetPath)"`
+- 配置属性 → 调试 → 命令参数：`../dist.js "$(TargetPath)"`
 - 配置属性 →VC++目录 → 包含目录：`$(SolutionDir)../.node/deps/v8/include;$(SolutionDir)../.node/deps/uv/include;$(SolutionDir)../.node/src;$(VC_IncludePath);$(WindowsSDK_IncludePath);`
 - 配置属性 →VC++目录 → 引用目录：`$(SolutionDir)../.node/Release;$(VC_ReferencesPath_x64);`
 - 配置属性 → 链接器 → 输入 → 附加依赖项：`$(SolutionDir)../.node/out/Release/node.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)`
